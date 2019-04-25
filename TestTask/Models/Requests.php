@@ -8,8 +8,10 @@ class Requests
         $db = DB::getConnection();
         $requestList = array();
 
-        $result = $db->query("SELECT * FROM user_request Where User_id=$id ORDER BY user_request_ID DESC");
-        
+        $query = "SELECT * FROM user_request Where User_id=:userID ORDER BY user_request_ID DESC";
+        $result = $db->prepare($query);
+        $result->bindParam(':userID', $id, PDO::PARAM_STR);
+        $result->execute();
         $i = 0;
         while($row = $result->fetch()){
             $requestList[$i]['User_id'] = $row['User_id'];
@@ -47,7 +49,11 @@ class Requests
         $db = DB::getConnection();
         if(!$isAdmin)
         {
-            $result = $db->query("SELECT * FROM user_request Where User_id=$User_id AND user_request_ID=$user_request_ID"); 
+            $query = "SELECT * FROM user_request Where User_id=:userID AND user_request_ID=:userRequestID"; 
+            $result = $db->prepare($query);
+            $result->bindParam(':userID', $User_id, PDO::PARAM_STR);
+            $result->bindParam(':userRequestID', $user_request_ID, PDO::PARAM_STR);
+            $result->execute();
         }
         else
         {

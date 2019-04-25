@@ -1,7 +1,9 @@
 <?php
 
-include_once ROOT.'/Models/User.php';
-
+//include_once ROOT.'/Models/User.php';
+spl_autoload_register(function ($class_name) {
+     include ROOT.'/Models/'. $class_name . '.php';
+ });
 class UserController
 {
     public function actionRegister()

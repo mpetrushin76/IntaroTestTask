@@ -1,9 +1,12 @@
 <?php
 
-include_once ROOT.'/Models/Requests.php';
-include_once ROOT.'/Models/User.php';
-include_once ROOT.'/Models/toXML.php';
+//include_once ROOT.'/Models/Requests.php';
+//include_once ROOT.'/Models/User.php';
+//include_once ROOT.'/Models/toXML.php';
 
+spl_autoload_register(function ($class_name) {
+    include ROOT.'/Models/'. $class_name . '.php';
+});
 class RequestsController
 {
     public function actionList()
