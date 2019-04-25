@@ -66,21 +66,43 @@ class Requests
     }
     public static function checkPhone($phone)
     {
-        if(strlen($phone)<11)
+        if(strlen($phone)>10)
+        {
+            if(preg_match("/[0-9]{11}/", $phone))
+            {
+                return true;
+                
+            }
             return false;
-        return true;
+        }
+            
+        return false;
     }
     public static function checkRequestName($requestName)
     {
-        if(strlen($requestName)<3)
+        if(strlen($requestName)>3)
+        {
+            if(!preg_match("/[<>]/", $requestName))
+            {
+                return true;
+            }
             return false;
-        return true;
+        }
+            
+        return false;
     }
     public static function checkRequestComment($requestComment)
     {
-        if(strlen($requestComment)<10)
+        if(strlen($requestComment)>10)
+        {
+            if(!preg_match("/[<>]/", $requestComment))
+            {
+                return true;
+            }
             return false;
-        return true;
+        }
+            
+        return false;
     }
     public static function createNewRequest($requestName,$userPhone,$requestComment,$requestImg, $userID)
     {

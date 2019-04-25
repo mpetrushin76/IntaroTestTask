@@ -1,29 +1,13 @@
 <?php
-    include ROOT.'/Config/head.php';
-?>
+    include ROOT.'/Views/layouts/head.php';
+?> 
     <title>Заявки</title>
 </head>
 <body>
-    <div class="header">
-        <?php
-            if($isAdmin)
-            {
-                echo "<p class=\"userType\">Администратор</p>";
-
-                echo "<a class=\"exitBtn\" href=\"/TestTask/user/requests/toXML\">Заявки в XML</a>";
-
-                echo "<a class=\"exitBtn\" href=\"/TestTask/user/requests/create\">Создать новую заявку</a>";
-            }
-            else
-            {
-                echo "<a class=\"exitBtn\" href=\"/TestTask/user/requests/create\">Создать новую заявку</a>";
-
-                echo "<p class=\"userType\">Пользователь</p>";
-            }
-        ?>
-        
-        <a class="exitBtn" href="/TestTask/user/auth">Выход</a>
-    </div>
+    
+    <?php 
+        include ROOT.'/Views/layouts/header.php';
+    ?>
     <div class="content">
         <?php
             if(isset($result))

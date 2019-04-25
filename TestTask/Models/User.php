@@ -20,16 +20,18 @@ class User
         }
         return false;
     }
-    public static function sessionAuth($user)
+    public static function sessionAuth($user, $Name)
     {
         session_start();
         $_SESSION['User_id']=$user['User_id'];
         $_SESSION['Is_Admin']=$user['Is_Admin'];
+        $_SESSION['User_Name']=$Name;
        
     }
     public static function sessionCheck()
     {
         session_start();
+      
         if(isset($_SESSION['User_id']))
         {
             return $_SESSION['User_id'];
@@ -39,7 +41,7 @@ class User
     }
     public static function sessionAdminCheck()
     {
-      
+       
         if(isset($_SESSION['Is_Admin']))
         {
             return $_SESSION['Is_Admin'];
@@ -67,7 +69,11 @@ class User
     {
         if(strlen($userName)>=3)
         {
-            return true;
+            if(preg_match("/[0-9a-z_]/i", $userName))
+            {
+                return true;
+            }
+            return false;
         }
         return false;
     }
@@ -75,7 +81,11 @@ class User
     {
         if(strlen($userPass)>=6)
         {
-            return true;
+            if(preg_match("/[0-9a-z_]/i", $userPass))
+            {
+                return true;
+            }
+            return false;
         }
         return false;
     }

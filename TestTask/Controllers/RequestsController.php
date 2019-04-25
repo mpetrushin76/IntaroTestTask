@@ -4,9 +4,7 @@
 //include_once ROOT.'/Models/User.php';
 //include_once ROOT.'/Models/toXML.php';
 
-spl_autoload_register(function ($class_name) {
-    include ROOT.'/Models/'. $class_name . '.php';
-});
+
 class RequestsController
 {
     public function actionList()
@@ -33,20 +31,28 @@ class RequestsController
         $userId = User::sessionCheck();
         $isAdmin = User::sessionAdminCheck();
         $request = Requests::getThisUserRequest($userId,$requsetID[0],$isAdmin);
-        require_once(ROOT.'/Views/UserRequests/CheckRequest.php');
+        if($request)
+        {
+            require_once(ROOT.'/Views/UserRequests/CheckRequest.php');
+        }
+        else{
+            require_once(ROOT.'/Views/UserRequests/error404.php');
+        }
+        
+        
         return true;
 
     }
     public function actionCreate()
     {
         $userId = User::sessionCheck();
+        $isAdmin = User::sessionAdminCheck();
         if(isset($_POST['submit']))
         {
             $requestName = $_POST['requestName'];
             $userPhone = $_POST['userPhone'];
             $requestComment = $_POST['requestComment'];
             $requestImg = $_FILES['requestImg']['name'];
-            echo $requestImg;
             $errors = false;
             if(!Requests::checkPhone($userPhone))
             {

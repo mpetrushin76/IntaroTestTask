@@ -1,15 +1,16 @@
 <?php
-    include ROOT.'/Config/head.php';
+    include ROOT.'/Views/layouts/head.php';
+    if(!preg_match("/[0-9a-z_]/i", $userName) or !preg_match("/[0-9a-z_]/i", $userPass))
+    {
+        $userName="";
+        $userPass="";
+    }
 ?>
-    <title>Логин</title>
-</head>
+    
 <body>
-<div class="header">
-        <?php
-                echo "<a class=\"exitBtn\" href=\"/TestTask/user/register\">Регистрация</a>";
-
-        ?>
-    </div>
+<?php 
+    include ROOT.'/Views/layouts/header.php';
+?>
     <form action="" method="post">
     <?php 
         if(isset($errors)){

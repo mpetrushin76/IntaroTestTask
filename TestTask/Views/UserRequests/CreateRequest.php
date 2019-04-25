@@ -1,12 +1,10 @@
 <?php
-    include ROOT.'/Config/head.php';
+    include ROOT.'/Views/layouts/head.php';
 ?>
-    <title>Создать новую заявку</title>
-</head>
 <body>
-    <div class="header">
-        <a class="exitBtn" href="/TestTask/user/auth">Выход</a>
-    </div>
+    <?php 
+        include ROOT.'/Views/layouts/header.php';
+    ?>
     <form action="" method="post"  enctype="multipart/form-data">
         <?php 
             if(isset($errors)){

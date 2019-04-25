@@ -1,9 +1,7 @@
 <?php
 
 //include_once ROOT.'/Models/User.php';
-spl_autoload_register(function ($class_name) {
-     include ROOT.'/Models/'. $class_name . '.php';
- });
+
 class UserController
 {
     public function actionRegister()
@@ -18,11 +16,11 @@ class UserController
            $userPass = $_POST['userPass'];
            if(!User::checkLogin($userName))
            {
-                $errors[] = "логин должен содержать 3 и более символа";
+                $errors[] = "логин должен содержать 3 и более символа, и содержать символы A-z,0-9";
            }
            if(!User::checkPass($userPass))
            {
-                $errors[] = "пароль должен содержать 6 и более символов";
+                $errors[] = "пароль должен содержать 6 и более символов, и содержать символы A-z,0-9";
            }
            if (!User::checkExistsLogin($userName))
            {
@@ -36,6 +34,11 @@ class UserController
            }
         }
         require_once(ROOT.'/Views/User/register.php');
+    }
+    public function actionNotFound()
+    {
+   
+          require_once(ROOT.'/Views/UserRequests/error404.php');
     }
     public function actionLogin()
     {
@@ -54,7 +57,7 @@ class UserController
                }
                else
                {
-                    User::sessionAuth($user);
+                    User::sessionAuth($user, $userName);
                     header("Location: /TestTask/user/requests");
                }
           }

@@ -5,6 +5,10 @@
     margin: 0;
    
 }
+.errorNotFound{
+    font-size: 300px;
+    
+}
 form{
     display:flex;
     align-content: center;
@@ -47,6 +51,7 @@ form{
 	  border-image: linear-gradient(45deg, rgba(220,39,230,1) 0%, rgba(248,80,50,1) 46%, rgba(217,112,0,1) 91%, rgba(217,112,0,1) 100%);
       border-image-slice: 1;
 }
+
 .submit{
     
     font-size: 20px;

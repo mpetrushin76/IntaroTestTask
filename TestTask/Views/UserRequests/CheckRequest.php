@@ -1,14 +1,10 @@
 <?php
-    include ROOT.'/Config/head.php';
+    include ROOT.'/Views/layouts/head.php';
 ?>
-    <title>Заявки</title>
-</head>
 <body>
-    <div class="header">
-        
-        
-        <a class="exitBtn" href="/TestTask/user/auth">Выход</a>
-    </div>
+    <?php 
+        include ROOT.'/Views/layouts/header.php';
+    ?>
     <div class="content">
         <div class="contentItem">
             <?php
