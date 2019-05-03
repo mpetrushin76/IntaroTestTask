@@ -1,17 +1,16 @@
 <?php
     include ROOT.'/Views/layouts/head.php';
+    include ROOT.'/Views/layouts/header.php';
 ?>
 <body>
-    <?php 
-        include ROOT.'/Views/layouts/header.php';
-    ?>
+   
     <form action="" method="post"  enctype="multipart/form-data">
         <?php 
             if(isset($errors)){
                 foreach ($errors as $item)
-                {
-                    echo "<p class=\"errors\">$item</p>";
-                }  
+                { ?>
+                   <p class="errors"><?= $item ?></p>
+               <?php }  
             }
         ?>
         <div class="formItem">

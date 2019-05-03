@@ -49,9 +49,12 @@ class RequestsController
         $isAdmin = User::sessionAdminCheck();
         if(isset($_POST['submit']))
         {
-            $requestName = $_POST['requestName'];
+            $requestName =  htmlspecialchars($_POST['requestName'], ENT_QUOTES);
+           
             $userPhone = $_POST['userPhone'];
-            $requestComment = $_POST['requestComment'];
+
+            $requestComment =   htmlspecialchars($_POST['requestComment'], ENT_QUOTES);
+          
             $requestImg = $_FILES['requestImg']['name'];
             $errors = false;
             if(!Requests::checkPhone($userPhone))
@@ -97,8 +100,19 @@ class RequestsController
             $dom_xml->loadXML(ArrayToXML::toXml($requestList)); 
             $path="auto.xml";
             $dom_xml->save($path);
-            
             $result = "успешно сформирован XML";
+           
+            
+            set_time_limit(0);
+            header('HTTP/1.0 200 OK');
+            header('Content-Disposition: attachment; filename="' . basename($path) . '"');
+            header('Content-Transfer-Encoding: binary');
+            header('Accept-Ranges: bytes');
+            header('Content-Length: ' . (filesize($path)));
+            header('Content-Type: application/x-rar-compressed');
+            @readfile($path);
+            
+           
             require_once(ROOT.'/Views/UserRequests/index.php');
         }
         else 

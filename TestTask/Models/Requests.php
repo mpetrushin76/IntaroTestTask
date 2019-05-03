@@ -82,11 +82,9 @@ class Requests
     {
         if(strlen($requestName)>3)
         {
-            if(!preg_match("/[<>]/", $requestName))
-            {
-                return true;
-            }
-            return false;
+           
+            return true;
+           
         }
             
         return false;
@@ -95,11 +93,9 @@ class Requests
     {
         if(strlen($requestComment)>10)
         {
-            if(!preg_match("/[<>]/", $requestComment))
-            {
+           
                 return true;
-            }
-            return false;
+            
         }
             
         return false;

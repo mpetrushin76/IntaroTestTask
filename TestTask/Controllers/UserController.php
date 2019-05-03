@@ -42,7 +42,6 @@ class UserController
     }
     public function actionLogin()
     {
-          User::sessionLogout();
           $userName='';
           $userPass='';
           if(isset($_POST['submit']))
@@ -63,4 +62,11 @@ class UserController
           }
           require_once(ROOT.'/Views/User/login.php');
     }
+    public function actionLogout()
+    {
+          User::sessionLogout();
+          header("Location: /TestTask/user/auth");
+
+    }
+   
 }

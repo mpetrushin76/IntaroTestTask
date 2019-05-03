@@ -1,31 +1,32 @@
 <?php
     include ROOT.'/Views/layouts/head.php';
-    if(!preg_match("/[0-9a-z_]/i", $userName) or !preg_match("/[0-9a-z_]/i", $userPass))
-    {
-        $userName="";
-        $userPass="";
-    }
-?>
-<body>
-<?php 
     include ROOT.'/Views/layouts/header.php';
 ?>
+<body>
+
+<?php if(isset($_SESSION['Is_Admin']))
+{?> 
+    <h1 style ="margin: 100px auto; width: 700px; font-size:100px; " class="errors">Добрый день <?= $_SESSION['User_Name'] ?></h1>
+<?php } else 
+{?>   
     <form action="" method="post">
         <?php 
             if(isset($errors)){
                 foreach ($errors as $item)
-                {
-                    echo "<p class=\"errors\">$item</p>";
-                }  
+                { ?>
+                   <p class="errors"><?= $item ?></p>
+               <?php }  
             }
         ?>
         <div class="formItem">
-            <input class="textInputs" type="text" name="userName" placeholder="Логин" value=<?php echo $userName ?>><br>
-            <input class="textInputs" type="password" name="userPass" placeholder="Пароль" value=<?php echo $userPass ?>><br>
+            <input class="textInputs" type="text" name="userName" placeholder="Логин" value=<?= $userName ?>><br>
+            <input class="textInputs" type="password" name="userPass" placeholder="Пароль" value=<?= $userPass ?>><br>
             <input class="submit" type="submit" name="submit" value="зарегистрироваться">
             
     </div>
     </form>
-   
+<?php 
+} 
+?>     
 </body>
 </html>
