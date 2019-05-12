@@ -31,7 +31,7 @@ class ArrayToXML
       if (is_numeric($key))
       {
         // поэтому делаем их строковыми
-        $key = "unknownNode_". (string) $key;
+        $key = "UserRequest_". (string) $key;
       }
   
       // удаляем не латинские символы
@@ -40,15 +40,27 @@ class ArrayToXML
       // если значение массива также является массивом то вызываем себя рекурсивно
       if (is_array($value))
       {
+       
         $node = $xml->addChild($key);
         // рекурсивный вызов
+        
         ArrayToXML::toXml($value, $rootNodeName, $node);
       }
       else
       {
         // добавляем один узел
                                 $value = htmlentities($value);
-        $xml->addChild($key,$value);
+       
+          if(($key=="userrequestimage") && ($value==""))
+          {
+
+          }
+          else
+          {
+            $xml->addChild($key,$value);            
+          }
+
+        
       }
   
     }

@@ -12,31 +12,37 @@
 ?> 
 
 <div class="header">
-            <p class="userType">Вы авторизованы как <?php echo $Welcome;?></p>
-        <?php if(!isset($_SESSION['Is_Admin'])) { ?>
-                <?php if($title=='Регистрация')
+        <p class="userType">Вы авторизованы как <?php echo $Welcome;?></p>
+        <?php if(!isset($_SESSION['Is_Admin'])) 
+        { 
+                if(preg_match("~register~", trim($_SERVER["REQUEST_URI"], '/'))) 
                 { ?>
                     <a class="exitBtn" href="/TestTask/user/auth">Авторизация</a>   
-                <?php } else 
+                <?php 
+                } else 
                 {?>
                     <a class="exitBtn" href="/TestTask/user/register">Регистрация</a>     
-                <?php }?>
-        <?php } else
+                <?php 
+                } 
+        } else
         { 
-            if ($_SESSION['Is_Admin']){ ?>
+            if ($_SESSION['Is_Admin'])
+            { ?>
             <a class="exitBtn" href="/TestTask/user/requests/toXML">Заявки в XML</a>
             <a class="exitBtn" href="/TestTask/user/requests/create">Создать новую заявку</a>
             <a class="exitBtn" href="/TestTask/user/requests">Мои заявки</a>
             <a class="exitBtn" href="/TestTask/user/logout">Выход</a>
-            <?php } else 
+            <?php 
+            } else 
             {
             ?>
             <a class="exitBtn" href="/TestTask/user/requests/create">Создать новую заявку</a>
             <a class="exitBtn" href="/TestTask/user/requests">Мои заявки</a>
             <a class="exitBtn" href="/TestTask/user/logout">Выход</a>
-        <?php }
+        <?php 
+            }
         }
-         ?>
+        ?>
          
         
         
